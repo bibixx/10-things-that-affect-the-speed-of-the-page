@@ -1,0 +1,9 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    container_name: ng_speed_app
+    ports:
+       - 8080:8080
