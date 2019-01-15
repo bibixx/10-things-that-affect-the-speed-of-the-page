@@ -5,7 +5,7 @@ import styles from './Logo.module.css';
 
 const Logo = ({ className }) => (
   <div className={`${styles.logo} ${className}`}>
-    <Link to="/" className={styles.navLink}>ImageGuru</Link>
+    <Link to="/" className={styles.navLink}>ImageGuru #2</Link>
   </div>
 );
 
