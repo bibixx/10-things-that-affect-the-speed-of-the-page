@@ -3,8 +3,21 @@
   grid-template-columns: repeat(3, 1fr);
   margin: 0 auto;
   max-width: 60rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
+  padding-top: 0;
   grid-gap: 0.5rem;
+}
+
+.header {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo a {
+  text-shadow: none;
+  color: #000;
 }
 
 .img {

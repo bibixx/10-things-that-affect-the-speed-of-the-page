@@ -11,13 +11,65 @@
   object-position: bottom;
 }
 
-.comments {
+.description {
   margin: 0 auto;
   max-width: 60rem;
-  padding: 3rem 2rem;
+  padding: 3rem;
+}
+
+.comments {
+  margin: 0;
+  padding: 0;
+}
+
+.comments li {
+  list-style: none;
+  margin-bottom: 0.5em;
+}
+
+.comment p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .header {
   font-size: 2.5rem;
-  margin-top: 0;
+  margin: 0.5em 0;
+}
+
+.nav {
+  position: absolute;
+  top: 0;
+  max-width: 60rem;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  height: 6rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+  display: flex;
+}
+
+@media (max-width: 62rem) {
+  .nav {
+    padding-left: 3rem;
+    padding-right: 5rem;
+  }
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 4rem;
+  line-height: 4rem;
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.33);
+  width: 2rem;
+  margin-top: -0.75rem;
+}
+
+.navLink::before {
+  content: "‹";
 }

@@ -1,0 +1,17 @@
+.logo {
+  font-family: 'Raleway';
+  font-weight: 900;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.33);
+}
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
+}

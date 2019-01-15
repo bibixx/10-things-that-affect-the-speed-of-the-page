@@ -1,32 +1,58 @@
+import faker from 'faker';
 import { pick } from 'lodash';
+
+const imagesN = 20;
+const videosList = [2, 4];
+const videosN = videosList.length;
 
 const commentGenerator = (() => {
   let i = 0;
 
-  return () => ({
-    id: i++,
-    user: 'John Doe',
-    text: 'Nice ❤️ 💪'
-  });
+  const possibleEmojis = ["❤️", "💪", "🔥", "😂", "😅", "😜", "😆", "😍", "🎉"];
+
+  return () => {
+    const emojis = new Array(faker.random.number({ min: 0, max: 5 })).fill(null).map(() => faker.random.arrayElement(possibleEmojis));
+
+    return {
+      id: i++,
+      user: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      text: `${faker.lorem.sentence(5)} ${emojis.join('')}`
+    };
+  };
 })();
 
 const imageGenerator = (() => {
   let i = 0;
+  let j = 0;
+  
+  return () => {
+    const id = i + j;
 
-  return () => ({
-    id: i,
-    url: `/images/img${i++ % 5 + 1}.jpeg`,
-    likes: Math.floor(Math.random() * 10000),
-    comments: new Array(Math.floor(Math.random() * 8) + 1).fill(null).map(commentGenerator),
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sodales eros et quam fringilla, sed faucibus metus iaculis. Nam sed tristique libero. Suspendisse dignissim neque in nisi ullamcorper pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer et interdum purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean nec dolor a libero rhoncus porta ac in lectus.'
-  });
+    if (videosList[j] === id) {
+      return {
+        id,
+        video: `/videos/vid${j++ % videosN + 1}.mp4`,
+        likes: Math.floor(Math.random() * 10000),
+        comments: new Array(Math.floor(Math.random() * 8) + 1).fill(null).map(commentGenerator),
+        description: faker.lorem.paragraphs(3)
+      };
+    }
+
+    return {
+      id,
+      url: `/images/img${i++ % imagesN + 1}.jpeg`,
+      likes: Math.floor(Math.random() * 10000),
+      comments: new Array(Math.floor(Math.random() * 8) + 1).fill(null).map(commentGenerator),
+      description: faker.lorem.paragraphs(3)
+    };
+  };
 })();
 
-const images = new Array(20).fill(null).map(imageGenerator);
+const images = new Array(imagesN + videosN).fill(null).map(imageGenerator);
 
 export const getImages = async () => ({
   data: {
-    images: images.map((img) => pick(img, ['id', 'url', 'likes']))
+    images: images.map((img) => pick(img, ['id', 'url', 'likes', 'video']))
   }
 })
 

@@ -497,7 +497,7 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
-      new BundleAnalyzerPlugin(),
+      // new BundleAnalyzerPlugin(),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       isEnvProduction &&
