@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import imagesReducer from './reducers/images';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import ImagesList from './components/ImagesList/ImagesList';
+import ImageDetails from './components/ImageDetails/ImageDetails';
+
+const App = () => {
+  const [images, dispatch] = useReducer(imagesReducer, []);
+
+  console.log(images);
+
+  return (
+    <div>
+      <Router>
+        <>
+          <Route path="/" exact render={() => (
+            <ImagesList images={images} dispatch={dispatch} />
+          )} />
+          <Route path="/image/:id" exact render={() => (
+            <ImageDetails images={images} dispatch={dispatch} />
+          )} />
+        </>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
